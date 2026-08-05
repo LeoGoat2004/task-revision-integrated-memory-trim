@@ -1,0 +1,30 @@
+services:
+  api:
+    build:
+      context: .
+      args:
+        # Optional: set PIP_INDEX_URL in .env for local mirror builds
+        PIP_INDEX_URL: ${PIP_INDEX_URL:-}
+    ports:
+      - "8000:8000"
+    environment:
+      # LLM (gpt-4o-mini required by the official checklist)
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - OPENAI_BASE_URL=${OPENAI_BASE_URL:-}
+      - LLM_MODEL=${LLM_MODEL:-gpt-4o-mini}
+      - LLM_ENABLE_THINKING=${LLM_ENABLE_THINKING:-false}
+      - LLM_MAX_TOKENS=${LLM_MAX_TOKENS:-2048}
+      # Embeddings (falls back to OPENAI_* when EMBEDDING_* unset)
+      - EMBEDDING_API_KEY=${EMBEDDING_API_KEY:-}
+      - EMBEDDING_BASE_URL=${EMBEDDING_BASE_URL:-}
+      - EMBEDDING_MODEL=${EMBEDDING_MODEL:-text-embedding-3-small}
+      - EMBEDDING_DIM=${EMBEDDING_DIM:-1536}
+      # Behavior
+      - USE_LLM_ON_ADD=${USE_LLM_ON_ADD:-true}
+      - USE_LLM_ON_SEARCH=${USE_LLM_ON_SEARCH:-true}
+      # Auth (Memory System Key)
+      - MEMORY_SYSTEM_KEY=${MEMORY_SYSTEM_KEY:-dev-memory-system-key}
+    volumes:
+      - ./src/data:/app/src/data
+      - ./src/logs:/app/src/logs
+    restart: unless-stopped

@@ -1,0 +1,13 @@
+.venv
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+src/data
+src/logs
+src/tests/tmp.db
+**/__pycache__
+**/*.pyc
+**/*.pyo
+LICENSE

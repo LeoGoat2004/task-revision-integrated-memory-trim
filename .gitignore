@@ -1,0 +1,24 @@
+# dependencies / runtime
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# secrets — 严禁提交任何 Key
+.env
+.env.*
+!.env.example
+
+# runtime data / logs / eval output
+**/*.db
+**/*.sqlite*
+src/logs/*.log
+**/eval_report*.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

@@ -1,4 +1,4 @@
-# Code Memory Agent
+# Task-Revision Integrated Memory (TRIM)
 
 Agent Memory Challenge 2026 · 代码记忆榜 · 学术方法榜 · 平台部署路径。
 
